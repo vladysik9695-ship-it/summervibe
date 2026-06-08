@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Приглашение на день рождения Владоса — Виза в Италию</title>
+    <style>
+        :root {
+            --apero: #FF6B35;
+            --lemon: #F7D238;
+            --dark: #2C3E50;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fff8e1;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- ЭКРАН 1: ГЛАВНЫЙ --- */
+        #main-screen {
+            height: 100vh;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('photo-vlada.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .visa-title { 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-weight: 300; 
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8); 
+            font-size: 2.2rem;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+        .visa-subtitle { 
+            font-size: 1.2rem; 
+            margin-top: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.9);
+            font-weight: 600;
+        }
+        .visa-btn {
+            background-color: var(--apero); 
+            color: white; 
+            padding: 16px 32px; 
+            font-size: 1rem; 
+            text-decoration: none; 
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s; 
+            font-weight: bold; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 35px;
+            width: 100%; 
+            max-width: 320px;
+            text-align: center;
+        }
+        .visa-btn:active { transform: scale(0.98); }
+
+        /* --- ЭКРАН 2: ФОРМА (С ИСПРАВЛЕННЫМ ФОНОМ) --- */
+        .modal-overlay {
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); 
+            z-index: 1000;
+            justify-content: center; 
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            /* Фон: картинка Aperol + полупрозрачный белый слой */
+            background: 
+                url('aperol-bg.jpg') no-repeat center/cover, 
+                rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); 
+            padding: 20px; 
+            border-radius: 24px; 
+            width: 90%; 
+            max-width: 500px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-height: 92vh; 
+            overflow: hidden; 
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .close-modal { 
+            position: absolute; 
+            top: 20px; right: 20px; 
+            font-size: 36px; 
+            cursor: pointer; 
+            color: #333; 
+            z-index: 10; 
+            line-height: 1;
+            padding: 5px;
+        }
+        .close-modal:active { color: var(--apero); }
+        
+        iframe { 
+            width: 100%; 
+            height: 480px; 
+            border: none; 
+            display: block; 
+            border-radius: 16px; 
+            background: white; 
+            margin-bottom: 15px;
+        }
+
+        .submit-form-btn {
+            display: block;
+            width: 100%;
+            margin-top: auto; 
+            padding: 16px;
+            background-color: white;
+            color: var(--dark);
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid var(--apero);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+        .submit-form-btn:active {
+            background-color: var(--apero);
+            color: white;
+            transform: scale(0.98);
+        }
+
+        /* --- ЭКРАН 3: УСПЕХ (ШТАМП) --- */
+        #success-screen {
+            display: none;
+            padding: 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .stamp-box {
+            background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 3px dashed var(--apero); margin-bottom: 20px;
+        }
+        .real-stamp {
+            width: 130px; height: 130px; background-color: rgba(255, 107, 53, 0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 15px auto; color: white; font-weight: 900; font-size: 1.1rem; transform: rotate(-15deg); box-shadow: 8px 8px 0px rgba(0,0,0,0.15);
+        }
+        .success-text h1 { color: var(--dark); margin-bottom: 10px; font-size: 1.6rem; }
+        .destination-info {
+            font-size: 1rem;
+            color: var(--dark);
+            margin: 15px 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .success-text p { color: #555; line-height: 1.5; font-size: 0.95rem; }
+
+        /* --- ЭКРАН 4: ДРЕСС-КОД --- */
+        #dress-code-screen {
+            display: none;
+            min-height: 100vh; 
+            background-color: #fff8e1;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .dress-code-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 70vh; 
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            object-fit: cover;
+            display: block;
+        }
+        .back-to-success {
+            margin-top: 20px;
+            padding: 14px 30px;
+            background-color: var(--apero);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            width: 100%;
+            max-width: 320px;
+            border: none;
+        }
+        .back-to-success:active { transform: scale(0.98); }
+
+        /* Адаптация под телефон */
+        @media (max-width: 768px) {
+            .visa-title { font-size: 1.8rem; letter-spacing: 2px; }
+            .visa-subtitle { font-size: 1rem; }
+            
+            .modal-content { width: 95%; height: 95vh; border-radius: 0; padding: 15px; }
+            iframe { height: 420px; }
+            .success-text h1 { font-size: 1.4rem; }
+            .destination-info { font-size: 0.9rem; }
+            .stamp-box { padding: 15px; }
+            .real-stamp { width: 110px; height: 110px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ЭКРАН 1: ГЛАВНЫЙ -->
+    <div id="main-screen">
+        <h1 class="visa-title">Виза в Италию</h1>
+        <h2 class="visa-subtitle">Летим ✈️ на день рождения Владоса</h2>
+        <p style="color: #ffe4b5; font-size: 1rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); margin-bottom: 30px;">
+            Вечеринка в стиле Dolce Vita. Заполни анкету, чтобы получить доступ!
+        </p>
+        <button onclick="openForm()" class="visa-btn">Оформить визу</button>
+    </div>
+
+    <!-- ЭКРАН 2: ФОРМА -->
+    <div class="modal-overlay" id="formModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeForm()">&times;</span>
+            <h2 style="color: var(--dark); text-align: center; margin-top: 0;">🛂 Анкета на визу</h2>
+            <!-- Ссылка на вашу форму Google Forms -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeafpYX_OVmtWxl4olOBqkCFpQgXqPWohV8xwR_vu4-UxVFhw/viewform?embedded=true" title="Google Form"></iframe>
+            <button class="submit-form-btn" onclick="showSuccessScreen()">Нажми, когда заполнишь</button>
+        </div>
+    </div>
+
+    <!-- ЭКРАН 3: ОДОБРЕНИЕ -->
+    <div id="success-screen">
+        <div class="stamp-box">
+            <div class="real-stamp">APPROVED</div>
+        </div>
+        <div class="success-text">
+            <h1>🛂 ВИЗА ОДОБРЕНА!</h1>
+            <div class="destination-info">Пункт назначения: канал Грибоедова д.156</div>
+            <p>Grazie mille! 🎉</p>
+            <p style="font-size: 0.9rem;">Большая просьба, взять с собой паспорт, валюту и хорошее настроение 😉</p>
+            <button onclick="showDressCode()" class="back-to-success">Посмотреть дресс-код →</button>
+        </div>
+    </div>
+
+    <!-- ЭКРАН 4: ДРЕСС-КОД -->
+    <div id="dress-code-screen">
+        <h1 style="color: var(--dark);">Дресс-код вечеринки</h1>
+        <p style="margin-bottom: 20px; color: #555;">Стиль: Итальянская Dolce Vita ☀️🍋</p>
+        <!-- Если нет своего файла dress-code.jpg, подгрузится картинка из интернета -->
+        <img src="dress-code.jpg" alt="Дресс-код" class="dress-code-image" onerror="this.src='https://images.unsplash.com/photo-1519557088053-476f6c593a66?q=80&w=800&auto=format&fit=crop'">
+        <br>
+        <button onclick="goBackToSuccess()" class="back-to-success" style="background-color: #555;">← Назад к визе</button>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById('main-screen').style.display = 'none';
+            document.getElementById('formModal').style.display = 'flex';
+        }
+
+        function closeForm() {
+            // При закрытии формы показываем экран успеха
+            document.getElementById('formModal').style.display = 'none';
+            showSuccessScreen();
+        }
+
+        function showSuccessScreen() {
+            document.getElementById('main-screen').style.display = 'none';
+            document.getElementById('formModal').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'block';
+            document.getElementById('dress-code-screen').style.display = 'none';
+        }
+
+        function showDressCode() {
+            document.getElementById('success-screen').style.display = 'none';
+            document.getElementById('dress-code-screen').style.display = 'block';
+        }
+
+        function goBackToSuccess() {
+            document.getElementById('dress-code-screen').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
